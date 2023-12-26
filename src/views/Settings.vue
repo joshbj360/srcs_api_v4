@@ -3,12 +3,6 @@
         <v-sheet width="300" class="mx-auto">
         <Session />
     </v-sheet>
-    <v-sheet width="300" class="mx-auto">
-
-    </v-sheet>
-    <v-sheet width="300" class="mx-auto">
-
-    </v-sheet>
     </div>
 </template>
 

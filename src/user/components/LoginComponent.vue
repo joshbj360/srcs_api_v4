@@ -3,14 +3,16 @@
       <v-form >
         <v-text-field
           label="Username"
+          variant="outlined"
           v-model="username"
         ></v-text-field>
         <v-text-field
           label="Password"
+          variant="outlined"
           v-model="password"
         ></v-text-field>
         <v-btn @click="login()">Login</v-btn>
-        <v-divider> </v-divider>
+        <v-divider class="mb-4"> </v-divider>
         <p>New User? <router-link to="/register/signup">Please Sign Up</router-link></p>
         </v-form>
     </v-sheet>

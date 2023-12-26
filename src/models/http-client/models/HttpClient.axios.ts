@@ -33,15 +33,20 @@ export class HttpClientAxios implements HttpClientInterface {
         }
 
         if (requiresToken && options.headers) {
-            // try get token from local storage
-            let token: string | null = null
+            // try get token from cookie
+            let token = {refresh: '', access: ''}
+
             try {
-                token = localStorage.getItem('token')
+                if (document.cookie.includes('token=')) {
+                    token = JSON.parse(document.cookie.split('token=')[1].split(';')[0])
+                }
+                //Set Authorization Header
+                options.headers = {
+                    Authorization: 'Bearer ' + token['access']
+                }
             } catch (e) {
                 console.log(e)
             }
-
-            console.log(token)
         }
 
         let result!: R

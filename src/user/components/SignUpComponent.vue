@@ -3,14 +3,17 @@
     <v-form>
       <v-text-field 
       label="username"
+      variant="outlined"
       v-model="user.username"
       ></v-text-field>
       <v-text-field 
       label="Full Name"
+      variant="outlined"
       v-model="fullName"
       ></v-text-field>
       <v-text-field 
       label="Password"
+      variant="outlined"
       v-model="user.password"
       ></v-text-field>
       <v-text-field 

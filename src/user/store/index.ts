@@ -35,6 +35,7 @@ export const useUserStore = defineStore('userStore1', {
     
       const expires = `expires=${expirationDate.toUTCString()}`;
       document.cookie = `${key}=${value}; ${expires}; path=/`;
-    }
+    },
+
   }
 })

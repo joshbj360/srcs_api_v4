@@ -5,7 +5,7 @@ import SessionApiClient from "@/session/models/implementation/session.url.model"
 
 const apiLiveClient: ApiClientInterface = {
     users: UsersApiClient,
-    session: SessionApiClient
+    sessions: SessionApiClient
 }
 
 export default apiLiveClient                                                                                                             

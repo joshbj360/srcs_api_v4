@@ -3,5 +3,5 @@ import { UserApiClientInterface } from "../../user/models/api-clients/userApiCli
 
 export interface ApiClientInterface {
     users: UserApiClientInterface
-    session: sessionApiClientInterface
+    sessions: sessionApiClientInterface
 }
