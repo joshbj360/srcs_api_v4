@@ -13,7 +13,7 @@ export const useSessionStore = defineStore('sessionStore1', {
         const sessions: SessionInterface[] = reactive<SessionInterface[]>([])
 
         return {
-            defaultSession,
+             defaultSession,
             sessions
         }
     },

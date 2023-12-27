@@ -70,6 +70,6 @@ const addSession = () => {
 }
 
 onMounted(() => {
-    sessions
+    sessions()
 })
 </script>
