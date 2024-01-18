@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    component: () => import('@/layouts/default/Default.vue'),
+    component: () => import('@/components/layouts/default/Default.vue'),
     children: [
       {
         path: '',
@@ -25,12 +25,36 @@ const routes = [
           {
             path:'login/',
             name:'login',
-            component: () => import('@/user/components/LoginComponent.vue')
+            component: () => import('@/apps/user/components/LoginComponent.vue')
           },
           {
             path:'signup/',
             name:'signup',
-            component: () => import('@/user/components/SignUpComponent.vue')
+            component: () => import('@/apps/user/components/SignUpComponent.vue')
+          },
+          
+        ]
+      },
+      {
+        path: 'class/',
+        name: 'class',
+        component: () => import('@/views/ClassDashboard.vue'),
+        children: [
+          {
+            path: 'add/',
+            name: 'addClass',
+            component: () => import('@/apps/class/components/Children/ClassForm.vue')
+          },
+          {
+            path: 'edit/:id',
+            name: 'editClass',
+            component: () => import('@/apps/class/components/Children/ClassForm.vue'),
+            props: true
+          },
+          {
+            path: 'list/',
+            name: 'classList',
+            component: () => import('@/apps/class/components/ClassCardList.vue')
           },
         ]
       },
@@ -40,6 +64,35 @@ const routes = [
         component: () => import('@/views/Settings.vue')
       },
     ],
+  },
+  {
+    path: '/core/',
+    name: 'student',
+    component: () => import('@/components/layouts/ListLayout.vue'),
+    children: [
+      {
+        path: 'student/',
+        name: 'student',
+        component: () => import('@/apps/student/component/StudentDashboard.vue'),
+        children: [
+          {
+            path: 'add/',
+            name: 'addStudent',
+            component: () => import('@/apps/student/component/children/StudentForm.vue')
+          },
+          {
+            path: 'list/',
+            name: 'listStudent',
+            component: () => import('@/apps/student/component/children/StudentList.vue')
+          },
+        ]
+      },
+      {
+        path: 'subject/',
+        name: 'subject',
+        component: () => import('@/views/SubjectDashboard.vue')
+      },
+    ]
   },
 ]
 

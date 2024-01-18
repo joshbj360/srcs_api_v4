@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { onMounted, ref } from 'vue';
-import { useUserStore } from '@/user/store';
-import { UserInterface } from '@/user/models/user.interface';
+import { useUserStore } from '@/apps/user/store';
+import { UserInterface } from '@/apps/user/models/user.interface';
 import Welcome from '@/components/Welcome.vue'
 
 

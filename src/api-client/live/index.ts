@@ -1,12 +1,16 @@
-import classApiClient from "@/apps/class/models/implementation/class.urls.model";
+import classApiClient from "@/apps/class/models/controller/class.urls.model";
 import { ApiClientInterface } from "../../models/api-client/ApiClient.interface";
-import UsersApiClient from '../../user/api-client/live'
-import SessionApiClient from "@/session/models/implementation/session.url.model";
+import UsersApiClient from '@/apps/user/api-client/live'
+import SessionApiClient from "@/apps/session/models/implementation/session.url.model";
+import SubjectApiClient from "@/apps/subjects/model/controller/subject.url.model";
+import StudentApiClient from "@/apps/student/model/controller/student.urls.model";
 
 const apiLiveClient: ApiClientInterface = {
     users: UsersApiClient,
     sessions: SessionApiClient,
-    classes: classApiClient
+    classes: classApiClient,
+    subjects: SubjectApiClient,
+    students: StudentApiClient
 }
 
-export default apiLiveClient                                                                                                             
+export default apiLiveClient

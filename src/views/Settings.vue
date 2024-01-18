@@ -8,8 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Session from '@/session/components/Session.vue'
-
+import Session from '@/apps/session/components/Session.vue'
     export default defineComponent ({
         components: {
             Session
