@@ -36,7 +36,7 @@ export class SessionClientModel implements sessionApiClientInterface {
         const { ...rest } = session
         const getParameters: HttpRequestParamsInterface = {
             requestType: HttpRequestType.put,
-            url: this.urls.fetchDefaultSession,
+            url: this.urls.setDefaultSession,
             requiresToken: true,
             payload: { rest },
             requestLog: '----------set default session'
@@ -54,13 +54,13 @@ export class SessionClientModel implements sessionApiClientInterface {
         return httpClient.request<SessionInterface[]>(getParameters)
     }
     addSession(session: SessionInterface): Promise<SessionInterface> {
-        const {year, term, defaultSession, } = session
+        const {id, year, term, IsDefaultSession } = session
 
         const getParameters: HttpRequestParamsInterface = {
             requestType: HttpRequestType.post,
             url: this.urls.addSession,
             requiresToken: true,
-            payload: {year, term, defaultSession}
+            payload: {id, year, term, IsDefaultSession}
         }
         return httpClient.request<SessionInterface>(getParameters)
     }

@@ -3,6 +3,7 @@ import { UserApiClientInterface } from "@/apps/user/models/api-clients/userApiCl
 import { ClassApiClientInterface } from "@/apps/class/models/interface/class.api.interface";
 import { SubjectApiClientInterface } from "@/apps/subjects/model/interface/subject.api.interface";
 import { StudentApiClientInterface } from "@/apps/student/model/interface/student.api.interface";
+import { SchoolApiClientInterface } from "@/apps/school/models/interface/school.api.interface";
 
 export interface ApiClientInterface {
     users: UserApiClientInterface
@@ -10,4 +11,5 @@ export interface ApiClientInterface {
     classes: ClassApiClientInterface
     subjects: SubjectApiClientInterface
     students: StudentApiClientInterface
+    schools: SchoolApiClientInterface
 }

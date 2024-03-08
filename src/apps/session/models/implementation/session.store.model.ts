@@ -6,10 +6,11 @@ import apiLiveClient from "@/api-client/live";
 export const useSessionStore = defineStore('sessionStore1', {
     state: () => {
         const defaultSession: SessionInterface = reactive<SessionInterface>({
+            id:0,
             year: '',
             term: '',
             IsDefaultSession: false,
-            session: ''
+            sessionID: '', 
         })
         const sessions: SessionInterface[] = reactive<SessionInterface[]>([])
 
@@ -20,7 +21,12 @@ export const useSessionStore = defineStore('sessionStore1', {
     },
 
     getters: {
-        
+        getSessionIDs: (state) => {
+            return state.sessions.map(s => s.sessionID)
+        },
+        getSessions: (state) => {
+            return state.sessions
+        }
     },
 
     actions:{

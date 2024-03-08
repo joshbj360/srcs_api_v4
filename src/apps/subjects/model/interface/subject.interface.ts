@@ -1,4 +1,5 @@
 export interface SubjectInterface {
+    id: number
     name: string
     category: string
     subjectTeacher: string

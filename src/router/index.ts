@@ -1,10 +1,10 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import { RouteLocationNormalized, createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
     path: '/',
-    component: () => import('@/components/layouts/default/Default.vue'),
+    component: () => import('@/components/layouts/Default.vue'),
     children: [
       {
         path: '',
@@ -32,11 +32,10 @@ const routes = [
             name:'signup',
             component: () => import('@/apps/user/components/SignUpComponent.vue')
           },
-          
         ]
       },
       {
-        path: 'class/',
+        path: 'dashboard/',
         name: 'class',
         component: () => import('@/views/ClassDashboard.vue'),
         children: [
@@ -46,7 +45,7 @@ const routes = [
             component: () => import('@/apps/class/components/Children/ClassForm.vue')
           },
           {
-            path: 'edit/:id',
+            path: 'edit/',
             name: 'editClass',
             component: () => import('@/apps/class/components/Children/ClassForm.vue'),
             props: true
@@ -58,21 +57,16 @@ const routes = [
           },
         ]
       },
-      {
-        path: 'settings/',
-        name: 'Settings',
-        component: () => import('@/views/Settings.vue')
-      },
     ],
   },
   {
-    path: '/core/',
-    name: 'student',
-    component: () => import('@/components/layouts/ListLayout.vue'),
+    path: '/school/',
+    name: 'studentsDetail',
+    component: () => import('@/components/layouts/Default.vue'),
     children: [
       {
         path: 'student/',
-        name: 'student',
+        name: 'studentDashboard',
         component: () => import('@/apps/student/component/StudentDashboard.vue'),
         children: [
           {
@@ -83,15 +77,30 @@ const routes = [
           {
             path: 'list/',
             name: 'listStudent',
-            component: () => import('@/apps/student/component/children/StudentList.vue')
+            component: () => import('@/apps/student/component/children/StudentList.vue'),
+            props: (route: RouteLocationNormalized) => ({
+              classID: route.query.classID
+            })
           },
         ]
       },
       {
         path: 'subject/',
         name: 'subject',
-        component: () => import('@/views/SubjectDashboard.vue')
+        component: () => import('@/apps/subjects/components/SubjectDashboard.vue')
       },
+    ]
+  },
+  {
+    path: '/core/',
+    name: 'Settings',
+    component: () => import('@/components/layouts/Default.vue'),
+      children: [
+        {
+          name: 'settings',
+          path: 'settings/',
+          component: () => import('@/views/Settings.vue')
+        }
     ]
   },
 ]

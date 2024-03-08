@@ -18,6 +18,6 @@ export interface UserInterface {
     Nationality: string;
     SOO: string;
     LGA: string;
-    
+    school: string
 
 }

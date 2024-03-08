@@ -16,6 +16,14 @@ export const useSubjectStore = defineStore('SubjectStore1', {
         getSubject: (state) => {
             return (subjectID: string) => state.subjects.find((s) => s.subjectID === subjectID)
         },
+        getSubjectsBySection: (state) => {
+            return (section: string | undefined) => {
+                if (section !== undefined) {
+                    return state.subjects.filter(s => s.category === section)
+                }
+                return []
+            }
+        }
     },
 
     actions: {

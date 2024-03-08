@@ -4,5 +4,5 @@ export interface SessionUrlsInterface {
     addSession: string
     deleteSession: string
     fetchDefaultSession: string
-    setDefaultSession: string,
+    setDefaultSession: string
 } 

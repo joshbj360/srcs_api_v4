@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue';
 import { ClassInterface } from '../../models/interface';
-import { useClassStore } from '../../models/controller/class.store';
+import { useClassStore } from '../../models/controller/class.store.model';
 
 const classStore = useClassStore()
 
@@ -44,4 +44,4 @@ const classStore = useClassStore()
   async function addNewClass() {
   await classStore.addClass(stdClass)
   }
-</script>
+</script>../../models/controller/class.store.model

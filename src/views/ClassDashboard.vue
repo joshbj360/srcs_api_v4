@@ -1,50 +1,31 @@
 <template>
-  <div class="class-btn-bar">
-    <v-sheet width="500" class="mx-auto">
-      <!-- <v-toolbar>
-        <v-btn @click=goToAdd() icon="mdi-account-multiple-plus" class="ms-5"></v-btn>
-        <v-btn @click="goToList()" icon="mdi-list-box"></v-btn>
-        <v-divider
-          class="mx-3 align-self-center"
-          length="24"
-          thickness="2"
-          vertical
-        ></v-divider>
-        <v-btn icon="mdi-printer"></v-btn>
-      </v-toolbar> -->
-      <v-divider
-        class="mx-3 align-self-center"
-        length="500"
-        thickness="3"
-        horizontal
-      ></v-divider>
-        <RouterView />
-    </v-sheet>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col cols="12" sm="6" md="4" v-for="_class in classes" :key="_class.classID">
+        <ClassCard :_class="_class" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useClassStore } from '@/apps/class/models/controller/class.store';
+import { onMounted, Ref, ref } from 'vue';
+import ClassCard from '@/apps/class/components/Children/ClassCard.vue'
+import { useClassStore } from '@/apps/class/models/controller/class.store.model';
+import { useSessionStore } from '@/apps/session/models/implementation/session.store.model';
+import { SessionInterface } from '@/apps/session/models/interface/session.interface';
+import { ClassInterface } from '@/apps/class/models/interface';
+import { useSchoolStore } from '@/apps/school/models/controllers/school.store.model';
 
-import ClassCard from '@/apps/class/components/Children/ClassCard.vue';
-import ClassForm from '@/apps/class/components/Children/ClassForm.vue';
-import router from '@/router';
+const schoolStore = useSchoolStore()
+const sessionStore = useSessionStore()
+const session: Ref<SessionInterface> = ref(sessionStore.defaultSession)
 
-  const classStore = useClassStore()
-  const classes = classStore.classes
-  const btnToggleClass = ref(false)
+const classes: Ref<ClassInterface[]> = ref([])
 
-  const goToAdd = () => {
-    router.push('/class/add')
-  }
-  const goToList = () => {
-    router.push('/class/list')
-  }
-
-  onMounted(async () => {
-    console.log('Mounted Class Dashboard')
-    await useClassStore().fetchClasses()
-    goToList()
-  })
-</script>@/apps/class/models/controller/class.store
+onMounted(async () => {
+  await useSessionStore().fetchDefaultSession()
+  await useClassStore().fetchClasses(schoolStore.activeSchool.id, session.value.id)
+  classes.value = useClassStore().classes
+})
+</script>@/apps/class/models/controller/class.store.model

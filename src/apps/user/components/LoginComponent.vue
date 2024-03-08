@@ -18,46 +18,22 @@
     </v-sheet>
   </template>
 
-  <script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useUserStore } from '../store';
-import apiClient from '@/api-client';
 import router from '@/router';
 
-  export default {
-   
-    setup(props) {
-        const username = ref("")
-        const password = ref("")
+const username = ref("")
+const password = ref("")
+const isAuthenticated = ref(false)
 
-        const userStore = useUserStore()
+const login = async () => {
+  await useUserStore().login(username.value, password.value)
+  .then(R => isAuthenticated.value = R)
+  if (isAuthenticated.value){
+    router.push('/dashboard/')
 
-        const login = async () => {
-          try {
-            // Login User
-            const token = await apiClient.users.loginUser(username.value, password.value)
-
-            // Update the token in the store
-            userStore.setToken(token)
-
-            // Update the cookie
-            userStore.setCookie('token', JSON.stringify(token), 1)
-            if (token) {
-              userStore.isAuthenticated = true
-              router.push('/')
-            }
-
-          } catch(e) {
-            console.log('Login failed: ', e)
-          }
-          
-        }
-        
-        return {
-            username,
-            password,
-            login
-        }
-    }
   }
+}
+
 </script>

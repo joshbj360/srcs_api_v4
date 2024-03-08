@@ -7,7 +7,7 @@ import { onMounted } from 'vue';
 
 
     onMounted(() => {
-        router.push('/core/student/list')
+        router.push('/school/student/list')
     })
 
 </script>
